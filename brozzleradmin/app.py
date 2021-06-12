@@ -116,7 +116,8 @@ def new_custom_job():
     form = NewCustomJobForm()
     if request.args.get('crawlrequest'):
         if form.validate_on_submit():
-            launch_job(request.args.get('crawlrequest'), form.job_name.data, form.job_config.data)
+            launch_job(db, request.args.get('crawlrequest'),
+                       form.job_name.data, form.job_config.data)
             return redirect('/')
         else:
             job_name = request.args.get('crawlrequest')
